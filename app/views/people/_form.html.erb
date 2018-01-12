@@ -1,0 +1,82 @@
+<div class="panel-body">
+<%= form_for @person,validate: true,html: {class:"form-horizontal "} do |form| %>
+  <% if person.errors.any? %>
+    <div id="error_explanation">
+      <h4>Faltan los siguientes campos por completar:</h4>
+
+      <ul>
+      <% person.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.text_field :nombre, id: :person_nombre,class: "form-control",placeholder: "Nombre*" %>
+  </div>
+  <br>
+  <div class="field">
+    <%= form.text_field :apellido, id: :person_apellido,class: "form-control",placeholder: "Apellido*" %>
+  </div>
+    <br>
+  <div class="field">
+    <%= form.number_field :cedula, id: :person_cedula,class: "form-control",placeholder: "Cédula*" %>
+  </div>
+    <br>
+    <div class="field">
+      <%= form.number_field :telefono, id: :person_telefono,class: "form-control",placeholder: "Teléfono" %>
+    </div>
+    <br>
+  <div class="field">
+    <%= form.text_field :correoElectronico, id: :email,class: "form-control",placeholder: "Email*" %>
+  </div>
+    <br>
+  <div class="field">
+    <%= form.text_field :direccion, id: :person_direccion,class: "form-control",placeholder: "Dirección" %>
+  </div>
+  <br>
+  <div class="field">
+    <%= form.text_field :birth_date, class:"form-control",placeholder: "Fecha de ingreso", :onfocus => "(this.type='date')",:onblur => "(this.type='text')"%>
+    <!--<input type="text" data-provide='datepicker' >-->
+  </div>
+  <br>
+    <br>
+<!--    <form action="/file-upload" class="dropzone">
+        <input name="file" type="file" multiple style="display: none"   />
+    </form>
+    <br>
+-->
+
+    <input hidden id="file" name="person[photo]"/>
+    <div class="dropzone dropzone-file-area" id="fileUpload">
+      <div class="dz-default dz-message text-center">
+        <h3 class="sbold">Arrastre un foto aquí</h3>
+        <span><h3>o haga click</h3></span>
+      </div>
+    </div>
+    <div class="actions">
+    <%= form.submit "Aceptar",class: "btn btn-lg btn-primary btn-block"%>
+  </div>
+    <i>*Campos obligatorios</i>
+<% end %>
+  </div>
+
+<script>
+    Dropzone.options.fileUpload = {
+    url: 'blackHole.php',
+    paramName: "person[photo]",
+    addRemoveLinks: true,
+    accept: function(file) {
+        let fileReader = new FileReader();
+
+        fileReader.readAsDataURL(file);
+        fileReader.onloadend = function() {
+
+            let content = fileReader.result;
+            $('#file').val(content);
+            file.previewElement.classList.add("dz-success");
+        }
+        file.previewElement.classList.add("dz-complete");
+    }
+}</script>

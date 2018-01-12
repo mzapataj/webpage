@@ -1,0 +1,38 @@
+// Place all the styles related to the People controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.message{
+  color: #cc0000;
+}
+
+.table-header{
+  background-color: #428bca;
+  color: whitesmoke;
+}
+body{
+  font-family: 'Roboto Slab', serif;
+}
+.details li {
+  list-style: none;
+  margin-bottom:10px;
+}
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+  display: none;
+}
+
+.dropzone{
+  border: 1px dashed black !important;
+  margin-bottom: 20px;
+  background-color: #ebebeb;
+}
+.navbar{
+  background-color: #428bca!important;
+}

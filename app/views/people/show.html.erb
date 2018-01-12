@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="jumbotron">
+
+      <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+        <%= image_tag @person.photo.url(:medium), alt: "stack photo", class: "img" %>
+        <!--<img src="https://www.svgimages.com/svg-image/s5/man-passportsize-silhouette-icon-256x256.png" alt="stack photo" class="img">-->
+      </div>
+      <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+        <div style="border-bottom:1px solid black"><strong><%= @person.nombre.capitalize%> <%= @person.apellido.capitalize%></strong></div>
+        <hr>
+        <ul class="details">
+        <li>
+          <strong>Cédula:</strong>
+          <%= @person.cedula %>
+        </li>
+
+        <li>
+          <strong>Email:</strong>
+          <%= @person.correoElectronico %>
+        </li>
+
+        <li>
+          <strong>Teléfono:</strong>
+          <%= @person.telefono %>
+        </li>
+
+        <li>
+          <strong>Dirección:</strong>
+          <%= @person.direccion %>
+        </li>
+        </ul>
+      </div>
+        <%= link_to 'Editar', edit_person_path(@person) %> |
+        <%= link_to 'Regresar', people_path %>
+  </div>
+</div>
