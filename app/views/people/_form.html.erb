@@ -67,16 +67,25 @@
     url: 'blackHole.php',
     paramName: "person[photo]",
     addRemoveLinks: true,
+    maxFiles: 1,
     accept: function(file) {
         let fileReader = new FileReader();
-
         fileReader.readAsDataURL(file);
         fileReader.onloadend = function() {
-
             let content = fileReader.result;
             $('#file').val(content);
+            if (file.previewElement.length-2 >= 0){
+                file.previewElement.classList.item(file.previewElement.length-2).remove();
+            }
             file.previewElement.classList.add("dz-success");
+
         }
         file.previewElement.classList.add("dz-complete");
     }
-}</script>
+}
+/*
+document.getElementById("fileUpload").onmouseover = function () {
+    location.cursor = pointer;
+};
+*/
+</script>

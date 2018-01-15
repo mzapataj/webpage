@@ -1,19 +1,55 @@
 <header>
- <div class="navbar navbar-inverse navbar-static-top">
-  <div class="container">
-    <div class="navbar-header">
-      <%=link_to "Index",root_path,class:"navbar-brand"%>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <%if user_signed_in?%>
-          <li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %></li>
-        <%else%>
-          <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
-          <li><%= link_to "Crear cuenta", new_user_registration_path%></li>
-        <%end%>
-      </ul>
-    </div>
-  </div>
-</div>
+       <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <%=link_to "Index",root_path,class:"navbar-brand"%>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <%if user_signed_in?%>
+                <li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %></li>
+              <%else%>
+                <li><%= link_to "Registrarse", new_user_registration_path%></li>
+                <li class="dropdown">
+                  <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Iniciar sesión<b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                      <li>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <%= form_for :user, url: session_path(:user), html: {id: "login-nav", role: "form"} do |form| %>
+                              <div class="form-group">
+                                <%= form.text_field :email, class: "form-control",placeholder: "email"%>
+                              </div>
+                              <div class="form-group">
+                                <%= form.password_field :password, autocomplete: "off", class: "form-control",placeholder: "contraseña"%>
+                              </div>
+                              <div class="form-group">
+                                <%= form.submit "Ingresar", class:"btn btn-default"%>
+                              </div>
+                              <div class="form-group">
+                                  <li style="margin-left: 10px;"><%= link_to "Crear cuenta", new_user_registration_path%></li>
+                              </div>
+                            <%end%>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                </li>
+              <%end%>
+            </ul>
+          </div>
+      </nav>
 </header>
+<script>
+    $(document).ready(function(){
+        //Handles menu drop down
+        $('.dropdown-menu').find('form').click(function (e) {
+            e.stopPropagation();
+        });
+    });
+</script>

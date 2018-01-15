@@ -33,6 +33,16 @@ body{
   margin-bottom: 20px;
   background-color: #ebebeb;
 }
+
 .navbar{
   background-color: #428bca!important;
 }
+
+.navbar-brand,.navbar-nav li a{
+  color: whitesmoke!important;
+}
+
+#fileUpload{
+  cursor: pointer;
+}
+#login-nav input { margin-bottom: 15px; }
